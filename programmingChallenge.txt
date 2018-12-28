@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class SerialNumber {
+	 public static void main(String[] args) {
+		Scanner scan =  new Scanner(System.in);
+		String serialNumber = scan.nextLine();
+		String expDate = getEXPDateAndSnumber(serialNumber);
+		String array[] = expDate.split(" ");
+		int totalLength = 16 + 8 + array[1].length();
+		System.out.println("01 GTIN NUMBER :"+getGtinNumber(serialNumber));
+		System.out.println("21 S_NUMBER :"+array[1]);
+		System.out.println("17 EXP DATE :"+array[0]);
+		System.out.println("10 LOT NUMBER :"+getLOTNumber(serialNumber, totalLength));
+	}
+	 public static String getLOTNumber(String serialNumber,int totalLength) {
+		String  lotNumber = serialNumber.substring(totalLength+4, serialNumber.length());
+		return lotNumber;
+	}
+	public static String getGtinNumber(String serialNumber) {
+		 String gitnNumber = serialNumber.substring(2, 16);
+		return gitnNumber; 
+	 }
+	 public static String getEXPDateAndSnumber(String serialNumber) {
+		 String expDate = "";
+		 String sNumber = "";
+		 try {
+		 for(int i=18;i<=serialNumber.length();i++) { 
+			 if(serialNumber.substring(i, i+2).equals("17")) {
+				 expDate = serialNumber.substring(i, i+8);
+				 int month = Integer.parseInt(expDate.substring(4, 6));
+				 int date =  Integer.parseInt(expDate.substring(6, 8));
+				 if((month < 13 && month > 0)&&(date > 0 && date < 32)) {
+				 break;
+				 }
+			 }else {
+					 sNumber += serialNumber.charAt(i);
+		      }
+		 }
+	}catch(ArrayIndexOutOfBoundsException e){
+			 System.out.println("PLEASE ENTER A VALID STRING");
+			 System.exit(0);
+		 }
+		 expDate = expDate.substring(2, expDate.length());
+        	 return expDate+" "+sNumber; 
+	 }	
+}
+ 
