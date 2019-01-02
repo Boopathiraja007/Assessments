@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>
+        Weather Details
+        </title>
+    </head>
+    <body>
+        <style>
+            #myDiv{
+                align-content: center;
+                margin: auto;
+                height: 600;
+                width: 400;
+                display: none;
+                
+            }
+            
+            #table{
+                width: 250;
+                left: 10;
+                border : "1px" 
+                margin : "10px" 
+                cellspacing : "10px"
+                cellpadding : "10px"
+                align : "center"
+            }
+        </style>
+        <select id="Select" value="">
+            <option id="SelectCity">Select city</option>
+            <option id="London" value="F:\boopathi\Assessments\london.json">London</option>
+            <option id="Chennai" value="F:\boopathi\Assessments\chennai.json" >Chennai</option>
+            <option id="Mumbai" value="F:\boopathi\Assessments\mumbai.json">Mumbai</option>
+        </select>
+        <input type="submit" id="submit">
+        <div id="myDiv">
+            <a id="Icon" style="float: right;left : 100px"  ></a>
+            <div id="cityName" style="text-align: center"></div><br>
+            <div id="Date"></div>
+            <p id="temp" style="float: right;text-align: center"></p>
+            <p id="temperature"></p>
+            <div id="description"></div> 
+            <table id="table"></table>
+            <div id="tableTwo"></div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="weather.js"></script>
+    </body>
+</html>
